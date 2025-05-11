@@ -1,3 +1,5 @@
+import User from "../models/User.js";
+
 export default async function (fastify) {
   fastify.get(
     "/admin/users",
@@ -11,9 +13,7 @@ export default async function (fastify) {
       ],
     },
     async () => {
-      const users = await import("../models/User.js").then((mod) =>
-        mod.default.find()
-      );
+      const users = await User.find();
       return users;
     }
   );
